@@ -1,4 +1,39 @@
+import { useState } from "react";
+
 const App = () => {
+  const events = [
+    {
+      id: 1,
+      name: "Event 1",
+      dateAndTime: "April 06, 2025 at 7PM IST",
+      type: "Online",
+    },
+    {
+      id: 2,
+      name: "Event 2",
+      dateAndTime: "May 25, 2025 at 3PM IST",
+      type: "Offline",
+    },
+    {
+      id: 3,
+      name: "Event 3",
+      dateAndTime: "August 12, 2025 at 8PM IST",
+      type: "Online",
+    },
+    {
+      id: 4,
+      name: "Event 4",
+      dateAndTime: "October 17, 2025 at 2PM IST",
+      type: "Offline",
+    },
+    {
+      id: 5,
+      name: "Event 5",
+      dateAndTime: "November 11, 2025 at 9AM IST",
+      type: "Offline",
+    },
+  ];
+
   return (
     <main className="py-4 container">
       <section className="row">
@@ -12,97 +47,28 @@ const App = () => {
         </div>
       </section>
       <section className="pt-4">
-        <section className="card mb-4">
-          <div className="row">
-            <div className="col-md-4">
-              <img
-                src="https://placehold.co/800x600?text=Event+1"
-                alt="event name"
-                className="card-img-start img-fluid"
-              />
-            </div>
-            <div className="col-md-8 ps-0">
-              <div className="card-body">
-                <h2 className="card-title display-5">Event 1</h2>
-                <p className="card-text fs-5 fw-light">Date: Event Date</p>
-                <p className="card-text fs-5 fw-light">Type: Offline/Online</p>
+        {events.map((event) => (
+          <section key={event.id} className="card mb-4">
+            <div className="row">
+              <div className="col-md-4">
+                <img
+                  src={`https://placehold.co/800x600?text=${event.name}`}
+                  alt={event.name}
+                  className="card-img-start img-fluid"
+                />
+              </div>
+              <div className="col-md-8 ps-0">
+                <div className="card-body">
+                  <h2 className="card-title display-5">{event.name}</h2>
+                  <p className="card-text fs-5 fw-light">
+                    Date: {event.dateAndTime}
+                  </p>
+                  <p className="card-text fs-5 fw-light">Type: {event.type}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="card mb-4">
-          <div className="row">
-            <div className="col-md-4">
-              <img
-                src="https://placehold.co/800x600?text=Event+2"
-                alt="event name"
-                className="card-img-start img-fluid"
-              />
-            </div>
-            <div className="col-md-8 ps-0">
-              <div className="card-body">
-                <h2 className="card-title display-5">Event 2</h2>
-                <p className="card-text fs-5 fw-light">Date: Event Date</p>
-                <p className="card-text fs-5 fw-light">Type: Offline/Online</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="card mb-4">
-          <div className="row">
-            <div className="col-md-4">
-              <img
-                src="https://placehold.co/800x600?text=Event+3"
-                alt="event name"
-                className="card-img-start img-fluid"
-              />
-            </div>
-            <div className="col-md-8 ps-0">
-              <div className="card-body">
-                <h2 className="card-title display-5">Event 3</h2>
-                <p className="card-text fs-5 fw-light">Date: Event Date</p>
-                <p className="card-text fs-5 fw-light">Type: Offline/Online</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="card mb-4">
-          <div className="row">
-            <div className="col-md-4">
-              <img
-                src="https://placehold.co/800x600?text=Event+4"
-                alt="event name"
-                className="card-img-start img-fluid"
-              />
-            </div>
-            <div className="col-md-8 ps-0">
-              <div className="card-body">
-                <h2 className="card-title display-5">Event 4</h2>
-                <p className="card-text fs-5 fw-light">Date: Event Date</p>
-                <p className="card-text fs-5 fw-light">Type: Offline/Online</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section className="card mb-4">
-          <div className="row">
-            <div className="col-md-4">
-              <img
-                src="https://placehold.co/800x600?text=Event+5"
-                alt="event name"
-                className="card-img-start img-fluid"
-              />
-            </div>
-            <div className="col-md-8 ps-0">
-              <div className="card-body">
-                <h2 className="card-title display-5">Event 5</h2>
-                <p className="card-text fs-5 fw-light">Date: Event Date</p>
-                <p className="card-text fs-5 fw-light">Type: Offline/Online</p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
+        ))}
       </section>
     </main>
   );
