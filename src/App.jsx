@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const App = () => {
-  const events = [
+  const allEvents = [
     {
       id: 1,
       name: "Event 1",
@@ -33,13 +33,29 @@ const App = () => {
       type: "Offline",
     },
   ];
+  const [aptEvents, setAptEvents] = useState(allEvents);
 
   return (
     <main className="py-4 container">
       <section className="row">
         <div className="col-md-4">
           <label htmlFor="eventTypeSelect">Select Event Type:</label>
-          <select id="eventTypeSelect" className="form-select mt-1">
+          <select
+            id="eventTypeSelect"
+            className="form-select mt-1"
+            onChange={(event) => {
+              const selectedEventType = event.target.value;
+              if (selectedEventType === "Both") {
+                setAptEvents(allEvents);
+              } else {
+                setAptEvents(
+                  allEvents.filter(
+                    (eachEvent) => eachEvent.type === selectedEventType
+                  )
+                );
+              }
+            }}
+          >
             <option value="Both">Both</option>
             <option value="Online">Online</option>
             <option value="Offline">Offline</option>
@@ -47,7 +63,7 @@ const App = () => {
         </div>
       </section>
       <section className="pt-4">
-        {events.map((event) => (
+        {aptEvents.map((event) => (
           <section key={event.id} className="card mb-4">
             <div className="row">
               <div className="col-md-4">
