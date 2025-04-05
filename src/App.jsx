@@ -148,7 +148,7 @@ const App = () => {
                 </div>
                 <div className="col-md-8 ps-0">
                   <div className="card-body">
-                    <h2 className="card-title display-5">{event.title}</h2>
+                    <h2 className="card-title display-6">{event.title}</h2>
                     <p className="card-text fs-5 fw-light">
                       Date: {event.dateAndTime}
                     </p>
