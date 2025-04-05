@@ -26,14 +26,14 @@ const App = () => {
       id: 3,
       title: "Paint In Central Park (Bucket List Event)",
       dateAndTime: "August 12, 2025 at 10:30AM IST",
-      type: "Offine",
+      type: "Offline",
       tags: ["Art", "Painting", "Illustration"],
     },
     {
       id: 4,
       title: '"The Hunchback of Notre Dame" by Victor Hugo - Session 1 of 2',
       dateAndTime: "October 17, 2025 at 2PM IST",
-      type: "Offine",
+      type: "Offline",
       tags: [
         "Classic Books",
         "Literature",
@@ -58,6 +58,31 @@ const App = () => {
     },
   ];
   const [aptEvents, setAptEvents] = useState(allEvents);
+  const [titleOrTagFilter, setTitleOrTagFilter] = useState("");
+  const getTitleCase = (sentence) => {
+    return sentence
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+  const findByTitleOrTag = () => {
+    if (titleOrTagFilter) {
+      setAptEvents(
+        allEvents.filter((currEvent) => {
+          const eventTitle = currEvent.title.toLowerCase();
+          const desiredEventTitle = titleOrTagFilter.toLowerCase();
+          if (
+            eventTitle === desiredEventTitle ||
+            eventTitle.includes(desiredEventTitle)
+          ) {
+            return currEvent;
+          } else if (currEvent.tags.includes(getTitleCase(titleOrTagFilter))) {
+            return currEvent;
+          }
+        })
+      );
+    } else setAptEvents(allEvents);
+  };
 
   return (
     <main className="py-4 container">
@@ -84,6 +109,28 @@ const App = () => {
             <option value="Online">Online</option>
             <option value="Offline">Offline</option>
           </select>
+        </div>
+        <div className="col-md-8">
+          <div className="input-group mt-4">
+            <input
+              className="form-control mt-1"
+              placeholder="Search by title or tag:"
+              value={titleOrTagFilter}
+              onChange={(event) => setTitleOrTagFilter(event.target.value)}
+            />
+            <button className="btn btn-primary mt-1" onClick={findByTitleOrTag}>
+              Search
+            </button>
+            <button
+              className="btn btn-warning mt-1"
+              onClick={() => {
+                setTitleOrTagFilter("");
+                setAptEvents(allEvents);
+              }}
+            >
+              Clear Filters
+            </button>
+          </div>
         </div>
       </section>
       <section className="pt-4">
