@@ -59,6 +59,7 @@ const App = () => {
   ];
   const [aptEvents, setAptEvents] = useState(allEvents);
   const [titleOrTagFilter, setTitleOrTagFilter] = useState("");
+
   const getTitleCase = (sentence) => {
     return sentence
       .split(" ")
@@ -134,28 +135,34 @@ const App = () => {
         </div>
       </section>
       <section className="pt-4">
-        {aptEvents.map((event) => (
-          <section key={event.id} className="card mb-4">
-            <div className="row">
-              <div className="col-md-4">
-                <img
-                  src={`https://placehold.co/800x600?text=${event.title}`}
-                  alt={event.title}
-                  className="card-img-start img-fluid"
-                />
-              </div>
-              <div className="col-md-8 ps-0">
-                <div className="card-body">
-                  <h2 className="card-title display-5">{event.title}</h2>
-                  <p className="card-text fs-5 fw-light">
-                    Date: {event.dateAndTime}
-                  </p>
-                  <p className="card-text fs-5 fw-light">Type: {event.type}</p>
+        {aptEvents.length ? (
+          aptEvents.map((event) => (
+            <section key={event.id} className="card mb-4">
+              <div className="row">
+                <div className="col-md-4">
+                  <img
+                    src={`https://placehold.co/800x600?text=${event.title}`}
+                    alt={event.title}
+                    className="card-img-start img-fluid"
+                  />
+                </div>
+                <div className="col-md-8 ps-0">
+                  <div className="card-body">
+                    <h2 className="card-title display-5">{event.title}</h2>
+                    <p className="card-text fs-5 fw-light">
+                      Date: {event.dateAndTime}
+                    </p>
+                    <p className="card-text fs-5 fw-light">
+                      Type: {event.type}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
-        ))}
+            </section>
+          ))
+        ) : (
+          <p className="alert alert-danger">No Events Found!</p>
+        )}
       </section>
     </main>
   );
