@@ -23,12 +23,20 @@ const EventDetails = () => {
 
           <section>
             <h3>Details:</h3>
-            {event.description}
+            <pre style={{ fontFamily: "inherit" }} className="fs-5 fw-light">
+              {event.description}
+            </pre>
           </section>
 
           <section>
             <h3>Additional Information:</h3>
-            <p></p>
+            {event.additionalInfo.length > 0 || <p>None</p>}
+            <ul>
+              {event.additionalInfo.length > 0 &&
+                event.additionalInfo.map((currInfo) => (
+                  <li key={currInfo}>{currInfo}</li>
+                ))}
+            </ul>
           </section>
 
           <section>
