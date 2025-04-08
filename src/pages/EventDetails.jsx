@@ -11,12 +11,16 @@ const EventDetails = () => {
         <article className="row">
           <div className="col-md-8">
             <h2>{event.title}</h2>
-            <p className="mb-0">Hosted By:</p>
-            {event.presentors.map((presentor) => (
-              <p key={presentor}>
-                <strong>{presentor}</strong>
-              </p>
-            ))}
+            {event.presentors.length > 0 && (
+              <>
+                <p className="mb-0">Hosted By:</p>
+                {event.presentors.map((presentor) => (
+                  <p key={presentor}>
+                    <strong>{presentor}</strong>
+                  </p>
+                ))}
+              </>
+            )}
 
             <section className="pt-3">
               <img src={event.posterUrl} alt={event.title} />
