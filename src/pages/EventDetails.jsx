@@ -15,8 +15,8 @@ const EventDetails = () => {
               <>
                 <p className="mb-0">Hosted By:</p>
                 {event.presentors.map((presentor) => (
-                  <p key={presentor}>
-                    <strong>{presentor}</strong>
+                  <p key={presentor.name}>
+                    <strong>{presentor.name}</strong>
                   </p>
                 ))}
               </>
@@ -81,9 +81,19 @@ const EventDetails = () => {
                 <h3 className="">Speakers: ({event.presentors.length})</h3>
                 <div className="row ms-0 mt-3 mb-0">
                   {event.presentors.map((currPresentor) => (
-                    <div key={currPresentor} className="col-6 card">
-                      <div className="card-body p-2">
-                        <p className="card-text fw-bold">{currPresentor}</p>
+                    <div key={currPresentor.name} className="col-6 card">
+                      <div className="card-body p-2 pb-0 text-center">
+                        <img
+                          src={currPresentor.profileImgUrl}
+                          alt={currPresentor.name}
+                          className="rounded-circle my-2"
+                        />
+                        <p>
+                          <strong>{currPresentor.name}</strong>
+                        </p>
+                        {currPresentor.designation && (
+                          <p>{currPresentor.designation}</p>
+                        )}
                       </div>
                     </div>
                   ))}
